@@ -19,9 +19,11 @@ jobs:
         with:
           dotnet-version: 8.0
 
-      - name: Restore, Build, and Test
-        run: |
-          cd Backend/EcoTrack.Authentification
-          dotnet restore
-          dotnet build --no-restore --configuration Release
-          dotnet test --no-build --configuration Release --verbosity normal
+      - name: Restore dependencies
+        run: dotnet restore Backend/EcoTrack.Authentification/EcoTrack.Authentification.sln
+
+      - name: Build solution
+        run: dotnet build Backend/EcoTrack.Authentification/EcoTrack.Authentification.sln --no-restore --configuration Release
+      
+      - name: Run tests
+        run: dotnet test Backend/EcoTrack.Authentification/EcoTrack.Authentification.sln --no-build --configuration Release --verbosity normal
