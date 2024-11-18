@@ -19,6 +19,9 @@ jobs:
         with:
           dotnet-version: 8.0
 
+      - name: Change directory
+        run:  cd Backend/EcoTrack.Authentification
+
       - name: Restore dependencies
         run: dotnet restore
 
