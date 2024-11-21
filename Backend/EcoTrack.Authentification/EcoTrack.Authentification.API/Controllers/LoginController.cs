@@ -1,5 +1,6 @@
 ﻿using EcoTrack.Authentification.API.Data;
 using EcoTrack.Authentification.API.DTO;
+using EcoTrack.Authentification.API.Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EcoTrack.Authentification.API.Controllers
@@ -9,9 +10,11 @@ namespace EcoTrack.Authentification.API.Controllers
     public class LoginController : Controller
     {
         private UserContext _userContext;
-        public LoginController(UserContext userContext)
+        private JwtService _jwtService;
+        public LoginController(UserContext userContext, JwtService jwtService)
         {
             _userContext = userContext;
+            _jwtService = jwtService;
         }
         [HttpPost]
         public IActionResult Connection(UserLoginDto user)
@@ -22,8 +25,9 @@ namespace EcoTrack.Authentification.API.Controllers
                 return NotFound();
             }
             else
-            {
-                return Ok();
+            { 
+                string jwt = _jwtService.GenerateToken(userDb.Id, userDb.Email!, ["user"], 30);
+                return Ok("Connexion success");
             }
         }
     }
