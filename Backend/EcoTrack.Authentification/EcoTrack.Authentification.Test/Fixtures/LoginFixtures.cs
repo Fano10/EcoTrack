@@ -1,5 +1,6 @@
 ﻿using EcoTrack.Authentification.API.DTO;
 using EcoTrack.Authentification.API.Model;
+using EcoTrack.Authentification.API.Service;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using System;
@@ -61,6 +62,10 @@ namespace EcoTrack.Authentification.Test.Fixtures
             mockDbSet.As<IQueryable<User>>().Setup(m => m.GetEnumerator()).Returns(users.GetEnumerator());
 
             return mockDbSet;
+        }
+        public static JwtService JwtMock()
+        {
+            return new JwtService("ThisisjustapurposeoftestDonotwritedirectilyyourkeytothecodeUseenviromnentvariable");
         }
     }
 
