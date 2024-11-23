@@ -20,7 +20,8 @@ namespace EcoTrack.Authentification.API.ExtensionMethods
                 //C'est ici que notre JWT va etre configurer
             }).AddJwtBearer(options =>
             {
-                string maCle = configuration["Jwt:Key"]!;
+                //fill with the key
+                string maCle = "";
                 //Cette option indique si le serveur doit conserver le jeton JWT dans l'objet utilisateur après authentification
                 options.SaveToken = true;
                 //Cette propriété définit les paramètres de validation que le serveur utilisera pour vérifier les jetons JWT
