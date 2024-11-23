@@ -2,6 +2,7 @@
 using EcoTrack.Authentification.API.Data;
 using EcoTrack.Authentification.API.DTO;
 using EcoTrack.Authentification.API.Model;
+using EcoTrack.Authentification.API.Service;
 using EcoTrack.Authentification.Test.Fixtures;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
@@ -26,7 +27,7 @@ namespace EcoTrack.Authentification.Test.System.Controller
             mockDbContext
                 .Setup(service => service.Users.SingleOrDefault(u => u.Email == realUser.Email && u.Password == realUser.Password));
             var mockUser = LoginFixtures.getUserInputTrue();
-            var sut = new LoginController(mockDbContext.Object, LoginFixtures.JwtMock());
+            var sut = new LoginController(mockDbContext.Object, LoginFixtures.JwtMock(), new HashService());
             // Act : Ici, on exécute l'action ou le comportement à tester
             var result = (StatusCodeResult)sut.Connection(mockUser);
 
@@ -46,7 +47,7 @@ namespace EcoTrack.Authentification.Test.System.Controller
             mockDbContext.Setup(c => c.Users).Returns(mockDbSet.Object);
 
             var mockUserInput = LoginFixtures.getUserInputTrue();
-            var sut = new LoginController(mockDbContext.Object, LoginFixtures.JwtMock());
+            var sut = new LoginController(mockDbContext.Object, LoginFixtures.JwtMock(), new HashService());
 
             // Act : Exécution de la méthode à tester
             var result = (OkObjectResult)sut.Connection(mockUserInput);
@@ -67,7 +68,7 @@ namespace EcoTrack.Authentification.Test.System.Controller
             mockDbContext.Setup(c => c.Users).Returns(mockDbSet.Object);
 
             var mockUserInput = LoginFixtures.getUserInputPasswordFalse();
-            var sut = new LoginController(mockDbContext.Object, LoginFixtures.JwtMock());
+            var sut = new LoginController(mockDbContext.Object, LoginFixtures.JwtMock(), new HashService());
 
             // Act : Exécution de la méthode à tester
             var result = (StatusCodeResult)sut.Connection(mockUserInput);
@@ -88,7 +89,7 @@ namespace EcoTrack.Authentification.Test.System.Controller
             mockDbContext.Setup(c => c.Users).Returns(mockDbSet.Object);
 
             var mockUserInput = LoginFixtures.getUserInputEmailFalse();
-            var sut = new LoginController(mockDbContext.Object, LoginFixtures.JwtMock());
+            var sut = new LoginController(mockDbContext.Object, LoginFixtures.JwtMock(), new HashService());
 
             // Act : Exécution de la méthode à tester
             var result = (StatusCodeResult)sut.Connection(mockUserInput);
@@ -109,7 +110,7 @@ namespace EcoTrack.Authentification.Test.System.Controller
             mockDbContext.Setup(c => c.Users).Returns(mockDbSet.Object);
 
             var mockUserInput = LoginFixtures.getUserInputAllFalse ();
-            var sut = new LoginController(mockDbContext.Object, LoginFixtures.JwtMock());
+            var sut = new LoginController(mockDbContext.Object, LoginFixtures.JwtMock(), new HashService());
 
             // Act : Exécution de la méthode à tester
             var result = (StatusCodeResult)sut.Connection(mockUserInput);
@@ -130,7 +131,7 @@ namespace EcoTrack.Authentification.Test.System.Controller
 
 
             var mockUserInput = LoginFixtures.getUserInputTrue();
-            var sut = new LoginController(mockDbContext.Object, LoginFixtures.JwtMock());
+            var sut = new LoginController(mockDbContext.Object, LoginFixtures.JwtMock(), new HashService());
             //Act
             var result = sut.Connection(mockUserInput);
             var okresult = (OkObjectResult)result;

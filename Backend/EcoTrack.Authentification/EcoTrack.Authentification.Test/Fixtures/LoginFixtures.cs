@@ -53,7 +53,7 @@ namespace EcoTrack.Authentification.Test.Fixtures
         {
             var users = new List<User>
             {
-                new User {Id = 1, Email ="rsjasonfano@gmail.com",Password="1234"}
+                new User {Id = 1, Email ="rsjasonfano@gmail.com",Password=new HashService().CreateHashPassword("1234")}
             }.AsQueryable();
             var mockDbSet = new Mock<DbSet<User>>();
             mockDbSet.As<IQueryable<User>>().Setup(m => m.Provider).Returns(users.Provider);
