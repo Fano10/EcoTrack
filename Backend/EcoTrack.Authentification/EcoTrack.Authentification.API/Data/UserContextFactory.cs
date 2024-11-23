@@ -10,7 +10,7 @@ namespace EcoTrack.Authentification.API.Data
         public UserContext CreateDbContext(string[] args)
         {
             var optionBuilder = new DbContextOptionsBuilder<UserContext>();
-            optionBuilder.UseNpgsql();
+            optionBuilder.UseNpgsql("");
 
             return new UserContext(optionBuilder.Options); 
         }

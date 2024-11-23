@@ -7,6 +7,8 @@ using System.Text.RegularExpressions;
 
 namespace EcoTrack.Authentification.API.Controllers
 {
+    [ApiController]
+    [Route("[Controller]")]
     public class SigningController : Controller
     {
         private UserContext _userContext;
@@ -17,6 +19,7 @@ namespace EcoTrack.Authentification.API.Controllers
             _userContext = userContext;
             _hashService = hashService;
         }
+        [HttpPost]
         public IActionResult SignIn(UserSignInDto userInput)
         {
             if(userInput.Name==""|| userInput.Password==""|| userInput.Email=="")

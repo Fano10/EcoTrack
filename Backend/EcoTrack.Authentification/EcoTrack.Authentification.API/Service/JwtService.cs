@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -9,6 +10,11 @@ namespace EcoTrack.Authentification.API.Service
     {
         private readonly SymmetricSecurityKey _signingKey;
 
+        //Do not use this method. For test purpose only
+        public JwtService()
+        {
+            _signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(""));
+        }
         public JwtService(string key)
         {
             _signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
