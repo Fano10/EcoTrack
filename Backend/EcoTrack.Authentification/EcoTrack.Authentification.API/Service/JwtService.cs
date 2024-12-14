@@ -13,7 +13,7 @@ namespace EcoTrack.Authentification.API.Service
         //Do not use this method. For test purpose only
         public JwtService()
         {
-            _signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(""));
+            _signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("dsdwkokrfdfcLsqworkeoeofdfd2d6c2dsqdcplxcaagfrgrg6fd5vsdfwfwgvfvfkgorkgor"));
         }
         public JwtService(string key)
         {

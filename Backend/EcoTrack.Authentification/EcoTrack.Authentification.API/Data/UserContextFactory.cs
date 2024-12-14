@@ -10,7 +10,8 @@ namespace EcoTrack.Authentification.API.Data
         public UserContext CreateDbContext(string[] args)
         {
             var optionBuilder = new DbContextOptionsBuilder<UserContext>();
-            optionBuilder.UseNpgsql("");
+            //for test purpose only, do not write directly the connexion string in the code in production
+            optionBuilder.UseNpgsql("Username =postgres; Password = Energizer12459; Host = localhost; Port = 1259; Database =EcoTrack; Pooling = true; Connection Lifetime =0;");
 
             return new UserContext(optionBuilder.Options); 
         }

@@ -21,7 +21,7 @@ namespace EcoTrack.Authentification.API.ExtensionMethods
             }).AddJwtBearer(options =>
             {
                 //fill with the key
-                string maCle = "";
+                string maCle = "dsdwkokrfdfcLsqworkeoeofdfd2d6c2dsqdcplxcaagfrgrg6fd5vsdfwfwgvfvfkgorkgor";
                 //Cette option indique si le serveur doit conserver le jeton JWT dans l'objet utilisateur après authentification
                 options.SaveToken = true;
                 //Cette propriété définit les paramètres de validation que le serveur utilisera pour vérifier les jetons JWT

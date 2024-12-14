@@ -25,9 +25,11 @@ namespace EcoTrack.SuiviEmpreinteCarbone.Test.System.Controller
                 Sub = "1",
                 Name = "fano"
             });
+
+            var userN = userContext.Users.FirstOrDefault(x => x.Sub == "1");
             userContext.Carbones.Add(new Carbone()
             {
-                Id = 1,
+                Id = userN!.Id,
                 Quantity = 1.25f
             });
             userContext.SaveChanges();
