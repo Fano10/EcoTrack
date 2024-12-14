@@ -26,12 +26,13 @@ namespace EcoTrack.SuiviEmpreinteCarbone.API.Controllers
         [HttpGet]
         public IActionResult GetCarbone(UserDto userBody)
         {
+
             int userId = _userService.UserFinding(userBody.Sub!, userBody.Name!);
 
             if (userId == -1) {
                 return NoContent();
             }
-            Carbone? carbone = _userContext.Carbones.Find(userId);
+            Carbone? carbone = _userContext.Carbones.FirstOrDefault(c => c.Id == userId);
             if (carbone == null) {
                 return NoContent();
             }
