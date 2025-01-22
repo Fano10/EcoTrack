@@ -1,0 +1,35 @@
+*{
+    line-height: 30px;
+    font-size: 1.05em;
+    font-family:Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.Login{
+    width: 500px;
+    height: auto;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px;
+}
+.Login fieldset {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    padding: 5px 10px;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 5px;
+}
+.Login fieldset .input{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.Login a{
+    color: rgb(33, 36, 36);
+    text-decoration: none;
+}
+.error{
+    color: red;
+}

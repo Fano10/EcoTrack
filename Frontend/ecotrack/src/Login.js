@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import "./App.css";
-import Register from "./Register";
 import { useEffect, useRef, useState } from "react";
-import { Route, Routes, Router, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import './Login.css';
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -15,6 +15,7 @@ function Login() {
     useEffect(() => {
         handleSubmitRef.current = function handleSubmit(e) {
             e.preventDefault();
+
     
             fetch("https://localhost:6002/Login", {
                 method: "POST",
@@ -34,17 +35,17 @@ function Login() {
                     console.error("Erreur lors de la requête :", error);
                 });
         };
-    }, [email, password]); // Pas besoin d'ajouter `validate` dans les dépendances
+    }, [email, password, navigate]); // Pas besoin d'ajouter `validate` dans les dépendances
     
 
 
 
     return (
-        <>
+        <div className="Login">
         <form onSubmit={(e) => handleSubmitRef.current(e)}>
             <fieldset>
-                <div>
-                    <label>Courriel</label>
+                <div className="input">
+                    <label>Courriel:</label>
                     <input
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -52,8 +53,8 @@ function Login() {
                         placeholder="Email"
                     />
                 </div>
-                <div>
-                    <label>Mot de passe</label>
+                <div className="input">
+                    <label>Mot de passe:</label>
                     <input
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
@@ -63,10 +64,10 @@ function Login() {
                 </div>
                 <button type="submit">Se connecter</button>
             </fieldset>
-        {validation ? <p>Email ou mot de passe incorrect</p> : null}
+        {validation ? <p className="error">Email ou mot de passe incorrect</p> : null}
         </form>
         <Link to="/register">S'inscrire</Link>
-        </>
+        </div>
     );
 }
 
